@@ -1,3 +1,5 @@
 .vs
 Debug
 .DS_Store
+
+*.sln
