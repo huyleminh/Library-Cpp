@@ -5,18 +5,18 @@
 
 namespace str {
 	class String {
-	protected: 
+	protected:
 		std::string _data;
 	public:
 		String();
 		~String() {};
-		
+
 		//Copy constructor
 		String(const std::string& str);
 		String(const str::String& str);
-        
-        	String& operator =(const std::string& str);
-        	String& operator =(const str::String& str);
+
+		String& operator =(const std::string& str);
+		String& operator =(const str::String& str);
 	};
 }
 
