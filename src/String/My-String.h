@@ -1,36 +1,56 @@
 #ifndef _MY_STRING_H_
 #define _MY_STRING_H_
 
+#include <iostream>
 #include <string>
+
+using namespace std;
 
 namespace str {
 	class String {
 	protected:
 		std::string _data;
+
 	public:
-		String();
-		~String() {};
+        // Defaut constructor.
+        String();
 
-		//Copy constructor
-		String(const std::string& str);
-		String(const str::String& str);
-		String(const char* ch);
+        String(char c, const int &repeatingCount = 1);
+        String(const char* s);
+        String(const std::string& str);
 
-		//Assignment operator
-		String& operator =(const std::string& str);
-		String& operator =(const str::String& str);
+        // Copy constructor.
+        String(const String& str);
 
-		//Member operator
-		String operator +(const std::string& str);
-		String operator +(const str::String& str);
 
-		String& operator +=(const std::string& str);
-		String& operator +=(const str::String& str);
-		String& operator +=(const char& ch);
+		// Assignment operator
+        String& operator= (char c);
+        String& operator= (const char* s);
+        String& operator= (const std::string& str);
 
-		char& operator [](const int& pos);
-		const char& operator [](const int& pos) const;
 
+		// Member operator
+        String operator+ (char c) const;
+        String operator+ (const char* s) const;
+		String operator+ (const std::string& str) const;
+		String operator+ (const str::String& str) const;
+
+        String& operator+= (char c);
+        String& operator+= (const char* s);
+		String& operator+= (const std::string& str);
+		String& operator+= (const str::String& str);
+
+
+		char& operator[] (int pos);
+		const char& operator[] (int pos) const;
+
+        friend String operator+ (char left, const String& right);
+        friend String operator+ (const char* left, const String& right);
+        friend String operator+ (const std::string& left, const String& right);
+
+        friend ostream& operator<< (ostream& outDev, const String& str);
+        friend istream& operator>> (istream& inDev, const String& str);
+        friend istream& getline(istream& inDev, const String& str, char delim = '\n');
 	};
 }
 

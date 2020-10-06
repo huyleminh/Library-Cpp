@@ -1,8 +1,6 @@
 #include "My-String.h"
 
-str::String::String() {
-    this->_data = "";
-}
+str::String::String() {}
 
 str::String::String(const std::string &str) {
     this->_data = str;
