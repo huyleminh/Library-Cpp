@@ -44,13 +44,19 @@ namespace str {
 		char& operator[] (int pos);
 		const char& operator[] (int pos) const;
 
+        // Add a `left` character at the beginning of `right` string.
         friend String operator+ (char left, const String& right);
+
+        // Add an `left` array character at the beginning of `right` string.
         friend String operator+ (const char* left, const String& right);
+
+        // Add a `left` string at the beginning of `right` string.
         friend String operator+ (const std::string& left, const String& right);
 
         friend ostream& operator<< (ostream& outDev, const String& str);
-        friend istream& operator>> (istream& inDev, const String& str);
-        friend istream& getline(istream& inDev, const String& str, char delim = '\n');
+        friend istream& operator>> (istream& inDev, String& str);
+        friend istream& getline(istream& inDev, String& str);
+        friend istream& getline(istream& inDev, String& str, char delim);
 	};
 }
 

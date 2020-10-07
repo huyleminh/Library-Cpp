@@ -19,18 +19,13 @@ str::String &str::String::operator=(const std::string &str) {
     return *this;
 }
 
-str::String &str::String::operator=(const str::String &str) {
-    this->_data = str._data;
-    return *this;
-}
-
-str::String str::String::operator+(const std::string &str) {
+str::String str::String::operator+(const std::string &str) const {
     str::String result = "";
     result._data += str;
     return result;
 }
 
-str::String str::String::operator+(const str::String &str) {
+str::String str::String::operator+(const str::String &str) const {
     str::String result = "";
     result._data += str._data;
     return result;
@@ -46,15 +41,29 @@ str::String &str::String ::operator+=(const str::String &str) {
     return *this;
 }
 
-str::String &str::String ::operator+=(const char& ch) {
+str::String &str::String ::operator+=(char ch) {
     this->_data += ch;
     return *this;
 }
 
-char& str::String::operator[](const int& pos) {
+char& str::String::operator[](int pos) {
     return this->_data[pos];
 }
 
-const char& str::String::operator[](const int& pos) const {
+const char& str::String::operator[](int pos) const {
     return this->_data[pos];
+}
+
+namespace str {
+    String operator+ (char left, const String& right) {
+        return String(left + right._data);
+    }
+
+    String operator+ (const char* left, const String& right) {
+        return String(left + right._data);
+    }
+
+    String operator+ (const std::string& left, const String& right) {
+        return String(left + right._data);
+    }
 }
