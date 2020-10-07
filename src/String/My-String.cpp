@@ -1,60 +1,75 @@
 #include "My-String.h"
 
-str::String::String() {}
+namespace str {
+// Defaut constructor.
+String::String() {}
 
-str::String::String(const std::string &str) {
-    this->_data = str;
+
+String::String(char c, const int& reatingCount) {
+    // std::string tmp(reatingCount, c);
+    // this._data = tmp;
 }
 
-str::String::String(const str::String &str) {
-    this->_data = str._data;
+String::String(const char* s) {
+    this._data = s;
 }
 
-str::String::String(const char* ch) {
-    this->_data = ch;
+String::String(const std::string &str) {
+    this._data = str;
 }
 
-str::String &str::String::operator=(const std::string &str) {
-    this->_data = str;
-    return *this;
+
+// Copy constructor.
+String::String(const String &str) {
+    this._data = str._data;
 }
 
-str::String &str::String::operator=(const str::String &str) {
-    this->_data = str._data;
-    return *this;
+String::String(const char* ch) {
+    this._data = ch;
 }
 
-str::String str::String::operator+(const std::string &str) {
-    str::String result = "";
+String &String::operator=(const std::string &str) {
+    this._data = str;
+    return this;
+}
+
+String &String::operator=(const String &str) {
+    this._data = str._data;
+    return this;
+}
+
+String String::operator+(const std::string &str) {
+    String result = "";
     result._data += str;
     return result;
 }
 
-str::String str::String::operator+(const str::String &str) {
-    str::String result = "";
+String String::operator+(const String &str) {
+    String result = "";
     result._data += str._data;
     return result;
 }
 
-str::String &str::String ::operator+=(const std::string &str) {
-    this->_data += str;
-    return *this;
+String &String ::operator+=(const std::string &str) {
+    this._data += str;
+    return this;
 }
 
-str::String &str::String ::operator+=(const str::String &str) {
-    this->_data += str._data;
-    return *this;
+String &String ::operator+=(const String &str) {
+    this._data += str._data;
+    return this;
 }
 
-str::String &str::String ::operator+=(const char& ch) {
-    this->_data += ch;
-    return *this;
+String &String ::operator+=(const char& ch) {
+    this._data += ch;
+    return this;
 }
 
-char& str::String::operator[](const int& pos) {
-    return this->_data[pos];
+char& String::operator[](const int& pos) {
+    return this._data[pos];
 }
 
-const char& str::String::operator[](const int& pos) const {
-    return this->_data[pos];
+const char& String::operator[](const int& pos) const {
+    return this._data[pos];
+}
 }
