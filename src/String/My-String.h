@@ -4,8 +4,6 @@
 #include <iostream>
 #include <string>
 
-#define this (*this)
-
 using namespace std;
 
 namespace str {
