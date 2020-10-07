@@ -66,4 +66,24 @@ namespace str {
     String operator+ (const std::string& left, const String& right) {
         return String(left + right._data);
     }
+    
+    ostream& operator<< (ostream& outDev, const str::String& str) {
+        outDev << str._data;
+        return outDev;
+    }
+
+    istream& operator>> (istream& inDev, String& str) {
+        inDev >> str._data;
+        return inDev;
+    }
+
+    istream& getline(istream& inDev, String& str) {
+        getline(inDev, str._data);
+        return inDev;
+    }
+
+    istream& getline(istream& inDev, String& str, char delim) {
+        getline(inDev, str._data, delim);
+        return inDev;
+    }
 }
