@@ -30,13 +30,13 @@ namespace str {
 
 
 		// Member operator
-        String operator+ (char c) const;
-        String operator+ (const char* s) const;
+        String operator+ (char c) const; // not complete
+        String operator+ (const char* s) const; // not complete
 		String operator+ (const std::string& str) const;
 		String operator+ (const str::String& str) const;
 
         String& operator+= (char c);
-        String& operator+= (const char* s);
+        String& operator+= (const char* s); // not complete
 		String& operator+= (const std::string& str);
 		String& operator+= (const str::String& str);
 
