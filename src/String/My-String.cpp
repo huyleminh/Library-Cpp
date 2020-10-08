@@ -22,6 +22,16 @@ str::String::String(const str::String &str) {
 }
 
 // Assignment operator
+str::String& str::String::operator=(char c) {
+    this._data = c;
+    return this;
+}
+
+str::String& str::String::operator=(const char* s) {
+    this._data = s;
+    return this;
+}
+
 str::String &str::String::operator=(const std::string &str) {
     this._data = str;
     return this;
