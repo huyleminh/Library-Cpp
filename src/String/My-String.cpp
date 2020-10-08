@@ -3,6 +3,11 @@
 // Defaut constructor.
 str::String::String() {}
 
+str::String::String(char c, const int& repeatingCount) {
+    for (int i = 0; i < repeatingCount; i++) 
+        this->_data += c;
+}
+
 str::String::String(const char* s) {
     this->_data = s;
 }
@@ -23,6 +28,18 @@ str::String &str::String::operator=(const std::string &str) {
 }
 
 // Member operator
+str::String str::String::operator+(char c) const {
+    str::String result = "";
+    result._data += c;
+    return result;
+}
+
+str::String str::String::operator+(const char* s) const {
+    str::String result = "";
+    result._data += s;
+    return result;
+}
+
 str::String str::String::operator+(const std::string &str) const {
     str::String result = "";
     result._data += str;
@@ -38,6 +55,11 @@ str::String str::String::operator+(const str::String &str) const {
 
 str::String &str::String ::operator+=(char ch) {
     this->_data += ch;
+    return *this;
+}
+
+str::String& str::String::operator+=(const char* s) {
+    this->_data += s;
     return *this;
 }
 
