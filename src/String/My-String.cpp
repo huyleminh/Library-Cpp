@@ -1,24 +1,28 @@
 #include "My-String.h"
 
+// Defaut constructor.
 str::String::String() {}
+
+str::String::String(const char* s) {
+    this->_data = s;
+}
 
 str::String::String(const std::string &str) {
     this->_data = str;
 }
 
+// Copy constructor.
 str::String::String(const str::String &str) {
     this->_data = str._data;
 }
 
-str::String::String(const char* ch) {
-    this->_data = ch;
-}
-
+// Assignment operator
 str::String &str::String::operator=(const std::string &str) {
     this->_data = str;
     return *this;
 }
 
+// Member operator
 str::String str::String::operator+(const std::string &str) const {
     str::String result = "";
     result._data += str;
@@ -31,6 +35,12 @@ str::String str::String::operator+(const str::String &str) const {
     return result;
 }
 
+
+str::String &str::String ::operator+=(char ch) {
+    this->_data += ch;
+    return *this;
+}
+
 str::String &str::String ::operator+=(const std::string &str) {
     this->_data += str;
     return *this;
@@ -38,11 +48,6 @@ str::String &str::String ::operator+=(const std::string &str) {
 
 str::String &str::String ::operator+=(const str::String &str) {
     this->_data += str._data;
-    return *this;
-}
-
-str::String &str::String ::operator+=(char ch) {
-    this->_data += ch;
     return *this;
 }
 
