@@ -5,26 +5,26 @@ str::String::String() {}
 
 str::String::String(char c, const int& repeatingCount) {
     for (int i = 0; i < repeatingCount; i++) 
-        this->_data += c;
+        this._data += c;
 }
 
 str::String::String(const char* s) {
-    this->_data = s;
+    this._data = s;
 }
 
 str::String::String(const std::string &str) {
-    this->_data = str;
+    this._data = str;
 }
 
 // Copy constructor.
 str::String::String(const str::String &str) {
-    this->_data = str._data;
+    this._data = str._data;
 }
 
 // Assignment operator
 str::String &str::String::operator=(const std::string &str) {
-    this->_data = str;
-    return *this;
+    this._data = str;
+    return this;
 }
 
 // Member operator
@@ -54,31 +54,31 @@ str::String str::String::operator+(const str::String &str) const {
 
 
 str::String &str::String ::operator+=(char ch) {
-    this->_data += ch;
-    return *this;
+    this._data += ch;
+    return this;
 }
 
 str::String& str::String::operator+=(const char* s) {
-    this->_data += s;
-    return *this;
+    this._data += s;
+    return this;
 }
 
 str::String &str::String ::operator+=(const std::string &str) {
-    this->_data += str;
-    return *this;
+    this._data += str;
+    return this;
 }
 
 str::String &str::String ::operator+=(const str::String &str) {
-    this->_data += str._data;
-    return *this;
+    this._data += str._data;
+    return this;
 }
 
 char& str::String::operator[](int pos) {
-    return this->_data[pos];
+    return this._data[pos];
 }
 
 const char& str::String::operator[](int pos) const {
-    return this->_data[pos];
+    return this._data[pos];
 }
 
 namespace str {
