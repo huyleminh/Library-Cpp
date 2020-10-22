@@ -59,6 +59,67 @@ namespace str {
         friend istream& operator>> (istream& inDev, String& str);
         friend istream& getline(istream& inDev, String& str);
         friend istream& getline(istream& inDev, String& str, char delim);
+
+
+        //TODO: On branch: relation operators: not finish 
+        //Equal to: 
+        bool operator ==(const std::string& str);
+        friend bool operator ==(const std::string& leftStr, const str::String& rightStr);
+
+        bool operator ==(const char* ch);
+        friend bool operator ==(const char* ch, const str::String& str);
+
+        bool operator ==(const str::String& str);
+
+
+        //Not equal
+        bool operator !=(const std::string& str);
+        friend bool operator !=(const std::string& leftStr, const str::String& rightStr);
+
+        bool operator !=(const char* ch);
+        friend bool operator !=(const char* ch, const str::String& str);
+
+        bool operator !=(const str::String& str);
+
+
+        //Greater than 
+        bool operator >(const std::string& str);
+        friend bool operator >(const std::string& leftStr, const str::String& rightStr);
+
+        bool operator >(const char* ch);
+        friend bool operator >(const char* ch, const str::String& str);
+
+        bool operator >(const str::String& str);
+
+
+        //Less than 
+        bool operator <(const std::string& str);
+        friend bool operator <(const std::string& leftStr, const str::String& rightStr);
+
+        bool operator <(const char* ch);
+        friend bool operator <(const char* ch, const str::String& str);
+
+        bool operator <(const str::String& str);
+
+
+        //Greater than or equal to
+        bool operator >=(const std::string& str);
+        friend bool operator >=(const std::string& leftStr, const str::String& rightStr);
+
+        bool operator >=(const char* ch);
+        friend bool operator >=(const char* ch, const str::String& str);
+
+        bool operator >=(const str::String& str);
+
+
+        //Less than or equal to 
+        bool operator <=(const std::string& str);
+        friend bool operator <=(const std::string& leftStr, const str::String& rightStr);
+
+        bool operator <=(const char* ch);
+        friend bool operator <=(const char* ch, const str::String& str);
+
+        bool operator <=(const str::String& str);
 	};
 }
 

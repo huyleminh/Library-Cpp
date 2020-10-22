@@ -124,3 +124,137 @@ namespace str {
         return inDev;
     }
 }
+
+//TODO new branch: 
+//Equal to: 
+bool str::String::operator ==(const std::string& str) {
+    return this._data == str;
+}
+
+bool str::String::operator ==(const char* ch) {
+    return this._data == ch;
+}
+
+bool str::String::operator ==(const str::String& str) {
+    return this._data == str._data;
+}
+
+//Not equal
+bool str::String::operator !=(const std::string& str) {
+    return this._data != str;
+}
+
+bool str::String::operator !=(const char* ch) {
+    return this._data != ch;
+}
+
+bool str::String::operator !=(const str::String& str) {
+    return this._data != str._data;
+}
+
+//Greater than
+bool str::String::operator >(const std::string& str) {
+    return this._data > str;
+}
+
+bool str::String::operator >(const char* ch) {
+    return this._data > ch;
+}
+
+bool str::String::operator >(const str::String& str) {
+    return this._data > str._data;
+}
+
+//Less than
+bool str::String::operator <(const std::string& str) {
+    return this._data < str;
+}
+
+bool str::String::operator <(const char* ch) {
+    return this._data < ch;
+}
+
+bool str::String::operator <(const str::String& str) {
+    return this._data < str._data;
+}
+
+//Greater than or equal to
+bool str::String::operator >=(const std::string& str) {
+    return this._data >= str;
+}
+
+bool str::String::operator >=(const char* ch) {
+    return this._data >= ch;
+}
+
+bool str::String::operator >=(const str::String& str) {
+    return this._data >= str._data;
+}
+
+//Less than or equal to
+bool str::String::operator <=(const std::string& str) {
+    return this._data <= str;
+}
+
+bool str::String::operator <=(const char* ch) {
+    return this._data <= ch;
+}
+
+bool str::String::operator <=(const str::String& str) {
+    return this._data <= str._data;
+}
+
+namespace str {
+    bool operator ==(const std::string& leftStr, const str::String& rightStr) {
+        return leftStr == rightStr._data;
+    }
+
+    bool operator ==(const char* ch, const str::String& str) {
+        return str._data == ch;
+    }
+
+
+    bool operator !=(const std::string& leftStr, const str::String& rightStr) {
+        return leftStr != rightStr._data;
+    }
+
+    bool operator !=(const char* ch, const str::String& str) {
+        return ch != str._data;
+    }
+
+
+    bool operator >(const std::string& leftStr, const str::String& rightStr) {
+        return leftStr > rightStr._data;
+    }
+
+    bool operator >(const char* ch, const str::String& str) {
+        return ch > str._data;
+    }
+
+
+    bool operator <(const std::string& leftStr, const str::String& rightStr) {
+        return leftStr < rightStr._data;
+    }
+
+    bool operator <(const char* ch, const str::String& str) {
+        return ch < str._data;
+    }
+
+
+    bool operator >=(const std::string& leftStr, const str::String& rightStr) {
+        return leftStr >= rightStr._data;
+    }
+
+    bool operator >=(const char* ch, const str::String& str) {
+        return ch >= str._data;
+    }
+
+
+    bool operator <=(const std::string& leftStr, const str::String& rightStr) {
+        return leftStr <= rightStr._data;
+    }
+
+    bool operator <=(const char* ch, const str::String& str) {
+        return ch <= str._data;
+    }
+}
