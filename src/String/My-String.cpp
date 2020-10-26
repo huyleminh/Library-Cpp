@@ -3,12 +3,12 @@
 // Defaut constructor.
 str::String::String() {}
 
-str::String::String(char c, const int& repeatingCount) {
+str::String::String(Element c, const int& repeatingCount) {
     for (int i = 0; i < repeatingCount; i++) 
         this._data += c;
 }
 
-str::String::String(const char* s) {
+str::String::String(const Element* s) {
     this._data = s;
 }
 
@@ -22,12 +22,12 @@ str::String::String(const str::String &str) {
 }
 
 // Assignment operator
-str::String& str::String::operator=(char c) {
+str::String& str::String::operator=(Element c) {
     this._data = c;
     return this;
 }
 
-str::String& str::String::operator=(const char* s) {
+str::String& str::String::operator=(const Element* s) {
     this._data = s;
     return this;
 }
@@ -38,13 +38,13 @@ str::String &str::String::operator=(const std::string &str) {
 }
 
 // Member operator
-str::String str::String::operator+(char c) const {
+str::String str::String::operator+(Element c) const {
     str::String result = "";
     result._data += c;
     return result;
 }
 
-str::String str::String::operator+(const char* s) const {
+str::String str::String::operator+(const Element* s) const {
     str::String result = "";
     result._data += s;
     return result;
@@ -63,12 +63,12 @@ str::String str::String::operator+(const str::String &str) const {
 }
 
 
-str::String &str::String ::operator+=(char ch) {
+str::String &str::String ::operator+=(Element ch) {
     this._data += ch;
     return this;
 }
 
-str::String& str::String::operator+=(const char* s) {
+str::String& str::String::operator+=(const Element* s) {
     this._data += s;
     return this;
 }
@@ -83,28 +83,28 @@ str::String &str::String ::operator+=(const str::String &str) {
     return this;
 }
 
-char& str::String::operator[](int pos) {
+Element& str::String::operator[](int pos) {
     return this._data[pos];
 }
 
-const char& str::String::operator[](int pos) const {
+const Element& str::String::operator[](int pos) const {
     return this._data[pos];
 }
 
 namespace str {
-    String operator+ (char left, const String& right) {
+    String operator+ (Element left, const String& right) {
         return String(left + right._data);
     }
 
-    String operator+ (const char* left, const String& right) {
+    String operator+ (const Element* left, const String& right) {
         return String(left + right._data);
     }
 
-    String operator+ (const std::string& left, const String& right) {
+    String operator+ (ConstBaseReference left, const String& right) {
         return String(left + right._data);
     }
     
-    ostream& operator<< (ostream& outDev, const str::String& str) {
+    ostream& operator<< (ostream& outDev, ConstReference str) {
         outDev << str._data;
         return outDev;
     }
@@ -119,7 +119,7 @@ namespace str {
         return inDev;
     }
 
-    istream& getline(istream& inDev, String& str, char delim) {
+    istream& getline(istream& inDev, String& str, Element delim) {
         getline(inDev, str._data, delim);
         return inDev;
     }
@@ -127,11 +127,11 @@ namespace str {
 
 //TODO new branch: 
 //Equal to: 
-bool str::String::operator ==(const std::string& str) {
+bool str::String::operator ==(ConstBaseReference str) {
     return this._data == str;
 }
 
-bool str::String::operator ==(const char* ch) {
+bool str::String::operator ==(const Element* ch) {
     return this._data == ch;
 }
 
@@ -140,11 +140,11 @@ bool str::String::operator ==(const str::String& str) {
 }
 
 //Not equal
-bool str::String::operator !=(const std::string& str) {
+bool str::String::operator !=(ConstBaseReference str) {
     return this._data != str;
 }
 
-bool str::String::operator !=(const char* ch) {
+bool str::String::operator !=(const Element* ch) {
     return this._data != ch;
 }
 
@@ -153,11 +153,11 @@ bool str::String::operator !=(const str::String& str) {
 }
 
 //Greater than
-bool str::String::operator >(const std::string& str) {
+bool str::String::operator >(ConstBaseReference str) {
     return this._data > str;
 }
 
-bool str::String::operator >(const char* ch) {
+bool str::String::operator >(const Element* ch) {
     return this._data > ch;
 }
 
@@ -166,11 +166,11 @@ bool str::String::operator >(const str::String& str) {
 }
 
 //Less than
-bool str::String::operator <(const std::string& str) {
+bool str::String::operator <(ConstBaseReference str) {
     return this._data < str;
 }
 
-bool str::String::operator <(const char* ch) {
+bool str::String::operator <(const Element* ch) {
     return this._data < ch;
 }
 
@@ -179,11 +179,11 @@ bool str::String::operator <(const str::String& str) {
 }
 
 //Greater than or equal to
-bool str::String::operator >=(const std::string& str) {
+bool str::String::operator >=(ConstBaseReference str) {
     return this._data >= str;
 }
 
-bool str::String::operator >=(const char* ch) {
+bool str::String::operator >=(const Element* ch) {
     return this._data >= ch;
 }
 
@@ -192,11 +192,11 @@ bool str::String::operator >=(const str::String& str) {
 }
 
 //Less than or equal to
-bool str::String::operator <=(const std::string& str) {
+bool str::String::operator <=(ConstBaseReference str) {
     return this._data <= str;
 }
 
-bool str::String::operator <=(const char* ch) {
+bool str::String::operator <=(const Element* ch) {
     return this._data <= ch;
 }
 
@@ -205,56 +205,56 @@ bool str::String::operator <=(const str::String& str) {
 }
 
 namespace str {
-    bool operator ==(const std::string& leftStr, const str::String& rightStr) {
+    bool operator ==(ConstBaseReference leftStr, const str::String& rightStr) {
         return leftStr == rightStr._data;
     }
 
-    bool operator ==(const char* ch, const str::String& str) {
+    bool operator ==(const Element* ch, const str::String& str) {
         return str._data == ch;
     }
 
 
-    bool operator !=(const std::string& leftStr, const str::String& rightStr) {
+    bool operator !=(ConstBaseReference leftStr, const str::String& rightStr) {
         return leftStr != rightStr._data;
     }
 
-    bool operator !=(const char* ch, const str::String& str) {
+    bool operator !=(const Element* ch, const str::String& str) {
         return ch != str._data;
     }
 
 
-    bool operator >(const std::string& leftStr, const str::String& rightStr) {
+    bool operator >(ConstBaseReference leftStr, const str::String& rightStr) {
         return leftStr > rightStr._data;
     }
 
-    bool operator >(const char* ch, const str::String& str) {
+    bool operator >(const Element* ch, const str::String& str) {
         return ch > str._data;
     }
 
 
-    bool operator <(const std::string& leftStr, const str::String& rightStr) {
+    bool operator <(ConstBaseReference leftStr, const str::String& rightStr) {
         return leftStr < rightStr._data;
     }
 
-    bool operator <(const char* ch, const str::String& str) {
+    bool operator <(const Element* ch, const str::String& str) {
         return ch < str._data;
     }
 
 
-    bool operator >=(const std::string& leftStr, const str::String& rightStr) {
+    bool operator >=(ConstBaseReference leftStr, const str::String& rightStr) {
         return leftStr >= rightStr._data;
     }
 
-    bool operator >=(const char* ch, const str::String& str) {
+    bool operator >=(const Element* ch, const str::String& str) {
         return ch >= str._data;
     }
 
 
-    bool operator <=(const std::string& leftStr, const str::String& rightStr) {
+    bool operator <=(ConstBaseReference leftStr, const str::String& rightStr) {
         return leftStr <= rightStr._data;
     }
 
-    bool operator <=(const char* ch, const str::String& str) {
+    bool operator <=(const Element* ch, const str::String& str) {
         return ch <= str._data;
     }
 }
