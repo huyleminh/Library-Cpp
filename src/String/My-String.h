@@ -6,10 +6,9 @@
 
 #define this (*this)
 
-typedef const std::string& ConstBaseReference;
-typedef const str::String& ConstReference;
-typedef char Element;
-typedef size_t SizeType;
+typedef const       std::string& ConstBaseReference;
+typedef char        Element;
+typedef size_t      SizeType;
 
 using namespace std;
 
@@ -40,27 +39,27 @@ namespace str {
         String operator+ (Element c) const;
         String operator+ (const Element* s) const; 
 		String operator+ (ConstBaseReference str) const;
-		String operator+ (ConstReference str) const;
+		String operator+ (const String &str) const;
 
         String& operator+= (Element c);
         String& operator+= (const Element* s);
 		String& operator+= (ConstBaseReference str);
-		String& operator+= (ConstReference str);
+		String& operator+= (const String &str);
 
 
 		Element& operator[] (int pos);
 		const Element& operator[] (int pos) const;
 
-        // Add a `left` Elementacter at the beginning of `right` string.
+        // Add a `left` character at the beginning of `right` string.
         friend String operator+ (Element left, const String& right);
 
-        // Add an `left` array Elementacter at the beginning of `right` string.
+        // Add an `left` array character at the beginning of `right` string.
         friend String operator+ (const Element* left, const String& right);
 
         // Add a `left` string at the beginning of `right` string.
         friend String operator+ (ConstBaseReference left, const String& right);
 
-        friend ostream& operator<< (ostream& outDev, ConstReference str);
+        friend ostream& operator<< (ostream& outDev, const String &str);
         friend istream& operator>> (istream& inDev, String& str);
         friend istream& getline(istream& inDev, String& str);
         friend istream& getline(istream& inDev, String& str, Element delim);
@@ -69,62 +68,62 @@ namespace str {
         //TODO: On branch: relation operators: not finish 
         //Equal to: 
         bool operator ==(ConstBaseReference str);
-        friend bool operator ==(ConstBaseReference leftStr, ConstReference rightStr);
+        friend bool operator ==(ConstBaseReference leftStr, const String &rightStr);
 
         bool operator ==(const Element* ch);
         friend bool operator ==(const Element* ch, const str::String str);
 
-        bool operator ==(ConstReference str);
+        bool operator ==(const String &str);
 
 
         //Not equal
         bool operator !=(ConstBaseReference str);
-        friend bool operator !=(ConstBaseReference leftStr, ConstReference rightStr);
+        friend bool operator !=(ConstBaseReference leftStr, const String &rightStr);
 
         bool operator !=(const Element* ch);
         friend bool operator !=(const Element* ch, const str::String str);
 
-        bool operator !=(ConstReference str);
+        bool operator !=(const String &str);
 
 
         //Greater than 
         bool operator >(ConstBaseReference str);
-        friend bool operator >(ConstBaseReference leftStr, ConstReference rightStr);
+        friend bool operator >(ConstBaseReference leftStr, const String &rightStr);
 
         bool operator >(const Element* ch);
         friend bool operator >(const Element* ch, const str::String str);
 
-        bool operator >(ConstReference str);
+        bool operator >(const String &str);
 
 
         //Less than 
         bool operator <(ConstBaseReference str);
-        friend bool operator <(ConstBaseReference leftStr, ConstReference rightStr);
+        friend bool operator <(ConstBaseReference leftStr, const String &rightStr);
 
         bool operator <(const Element* ch);
         friend bool operator <(const Element* ch, const str::String str);
 
-        bool operator <(ConstReference str);
+        bool operator <(const String &str);
 
 
         //Greater than or equal to
         bool operator >=(ConstBaseReference str);
-        friend bool operator >=(ConstBaseReference leftStr, ConstReference rightStr);
+        friend bool operator >=(ConstBaseReference leftStr, const String &rightStr);
 
         bool operator >=(const Element* ch);
         friend bool operator >=(const Element* ch, const str::String str);
 
-        bool operator >=(ConstReference str);
+        bool operator >=(const String &str);
 
 
         //Less than or equal to 
         bool operator <=(ConstBaseReference str);
-        friend bool operator <=(ConstBaseReference leftStr, ConstReference rightStr);
+        friend bool operator <=(ConstBaseReference leftStr, const String &rightStr);
 
         bool operator <=(const Element* ch);
         friend bool operator <=(const Element* ch, const str::String str);
 
-        bool operator <=(ConstReference str);
+        bool operator <=(const String &str);
 	};
 }
 

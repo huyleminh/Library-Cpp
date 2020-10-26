@@ -1,11 +1,12 @@
 #include "My-String.h"
 
+namespace str {
 // Defaut constructor.
 str::String::String() {}
 
 str::String::String(Element c, const int& repeatingCount) {
-    for (int i = 0; i < repeatingCount; i++) 
-        this._data += c;
+    for (int i = 0; i < repeatingCount; i++)
+    this._data += c;
 }
 
 str::String::String(const Element* s) {
@@ -91,38 +92,36 @@ const Element& str::String::operator[](int pos) const {
     return this._data[pos];
 }
 
-namespace str {
-    String operator+ (Element left, const String& right) {
-        return String(left + right._data);
-    }
+String operator+ (Element left, const String& right) {
+    return String(left + right._data);
+}
 
-    String operator+ (const Element* left, const String& right) {
-        return String(left + right._data);
-    }
+String operator+ (const Element* left, const String& right) {
+    return String(left + right._data);
+}
 
-    String operator+ (ConstBaseReference left, const String& right) {
-        return String(left + right._data);
-    }
-    
-    ostream& operator<< (ostream& outDev, ConstReference str) {
-        outDev << str._data;
-        return outDev;
-    }
+String operator+ (ConstBaseReference left, const String& right) {
+    return String(left + right._data);
+}
 
-    istream& operator>> (istream& inDev, String& str) {
-        inDev >> str._data;
-        return inDev;
-    }
+ostream& operator<< (ostream& outDev, const String &str) {
+    outDev << str._data;
+    return outDev;
+}
 
-    istream& getline(istream& inDev, String& str) {
-        getline(inDev, str._data);
-        return inDev;
-    }
+istream& operator>> (istream& inDev, String& str) {
+    inDev >> str._data;
+    return inDev;
+}
 
-    istream& getline(istream& inDev, String& str, Element delim) {
-        getline(inDev, str._data, delim);
-        return inDev;
-    }
+istream& getline(istream& inDev, String& str) {
+    getline(inDev, str._data);
+    return inDev;
+}
+
+istream& getline(istream& inDev, String& str, Element delim) {
+    getline(inDev, str._data, delim);
+    return inDev;
 }
 
 //TODO new branch: 
@@ -204,57 +203,56 @@ bool str::String::operator <=(const str::String& str) {
     return this._data <= str._data;
 }
 
-namespace str {
-    bool operator ==(ConstBaseReference leftStr, const str::String& rightStr) {
-        return leftStr == rightStr._data;
-    }
+bool operator ==(ConstBaseReference left, const str::String& right) {
+    return left == right._data;
+}
 
-    bool operator ==(const Element* ch, const str::String& str) {
-        return str._data == ch;
-    }
-
-
-    bool operator !=(ConstBaseReference leftStr, const str::String& rightStr) {
-        return leftStr != rightStr._data;
-    }
-
-    bool operator !=(const Element* ch, const str::String& str) {
-        return ch != str._data;
-    }
+bool operator ==(const Element* ch, const str::String& str) {
+    return str._data == ch;
+}
 
 
-    bool operator >(ConstBaseReference leftStr, const str::String& rightStr) {
-        return leftStr > rightStr._data;
-    }
+bool operator !=(ConstBaseReference left, const str::String& right) {
+    return left != right._data;
+}
 
-    bool operator >(const Element* ch, const str::String& str) {
-        return ch > str._data;
-    }
-
-
-    bool operator <(ConstBaseReference leftStr, const str::String& rightStr) {
-        return leftStr < rightStr._data;
-    }
-
-    bool operator <(const Element* ch, const str::String& str) {
-        return ch < str._data;
-    }
+bool operator !=(const Element* ch, const str::String& str) {
+    return ch != str._data;
+}
 
 
-    bool operator >=(ConstBaseReference leftStr, const str::String& rightStr) {
-        return leftStr >= rightStr._data;
-    }
+bool operator >(ConstBaseReference left, const str::String& right) {
+    return left > right._data;
+}
 
-    bool operator >=(const Element* ch, const str::String& str) {
-        return ch >= str._data;
-    }
+bool operator >(const Element* ch, const str::String& str) {
+    return ch > str._data;
+}
 
 
-    bool operator <=(ConstBaseReference leftStr, const str::String& rightStr) {
-        return leftStr <= rightStr._data;
-    }
+bool operator <(ConstBaseReference left, const str::String& right) {
+    return left < right._data;
+}
 
-    bool operator <=(const Element* ch, const str::String& str) {
-        return ch <= str._data;
-    }
+bool operator <(const Element* ch, const str::String& str) {
+    return ch < str._data;
+}
+
+
+bool operator >=(ConstBaseReference left, const str::String& right) {
+    return left >= right._data;
+}
+
+bool operator >=(const Element* ch, const str::String& str) {
+    return ch >= str._data;
+}
+
+
+bool operator <=(ConstBaseReference left, const str::String& right) {
+    return left <= right._data;
+}
+
+bool operator <=(const Element* ch, const str::String& str) {
+    return ch <= str._data;
+}
 }
