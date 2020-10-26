@@ -6,6 +6,11 @@
 
 #define this (*this)
 
+#define ConstBaseReference const std::string&
+#define ConstReference const str::String&
+#define Element char
+#define SizeType size_t
+
 using namespace std;
 
 namespace str {
