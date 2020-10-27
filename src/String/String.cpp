@@ -15,7 +15,7 @@ namespace modlib {
 
 String::String() {}
 
-String::String(Element c, int repeatingCount) {
+String::String(Element c, SizeType repeatingCount) {
     _data = string(repeatingCount, c);
 }
 
@@ -307,17 +307,17 @@ ostream& operator<< (ostream& outDev, String::ConstReference str) {
 }
 
 // Input a string from the input device.
-istream& operator>> (istream& inDev, String& str) {
+istream& operator>> (istream& inDev, String::Reference str) {
     inDev >> str._data;
     return inDev;
 }
 
-istream& getline(istream& inDev, String& str) {
+istream& getline(istream& inDev, String::Reference str) {
     getline(inDev, str._data);
     return inDev;
 }
 
-istream& getline(istream& inDev, String& str, String::Element delim) {
+istream& getline(istream& inDev, String::Reference str, String::Element delim) {
     getline(inDev, str._data, delim);
     return inDev;
 }

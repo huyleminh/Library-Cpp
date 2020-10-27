@@ -24,6 +24,7 @@ namespace modlib {
         typedef const char*             ConstCharacterArray;
         typedef char*                   CharacterArray;
         typedef size_t                  SizeType;
+        typedef modlib::String&         Reference;
         typedef const modlib::String&   ConstReference;
 
         // --------------------------------------------------------------------
@@ -43,7 +44,7 @@ namespace modlib {
         String();
 
         // Initialize a string with `repeatingCount` consecutive copies of character `c`.
-        String(Element c, int repeatingCount = 1);
+        String(Element c, SizeType repeatingCount = 1);
 
         // Initialize a string with a pointer to the character array.
         String(ConstCharacterArray s);
@@ -94,7 +95,7 @@ namespace modlib {
 
         // --------------------------------------------------------------------
         // |                                                                  |
-        // |                     Comparision operators                        |
+        // |                     Comparison operators                        |
         // |                                                                  |
         // --------------------------------------------------------------------
 
@@ -143,7 +144,7 @@ namespace modlib {
 
 
         // --------------------------------------------------------------------
-        // Comparision operators.
+        // Comparison operators.
 
         //TODO: On branch: relation operators: not finish 
         // Equal to.
@@ -197,9 +198,9 @@ namespace modlib {
         friend ostream& operator<< (ostream& outDev, String::ConstReference str);
 
         // Input a string from the input device.
-        friend istream& operator>> (istream& inDev, String& str);
-        friend istream& getline(istream& inDev, String& str);
-        friend istream& getline(istream& inDev, String& str, String::Element delim);
+        friend istream& operator>> (istream& inDev, String::Reference str);
+        friend istream& getline(istream& inDev, String::Reference str);
+        friend istream& getline(istream& inDev, String::Reference str, String::Element delim);
 
         // --------------------------------------------------------------------
         // --------------------------------------------------------------------
