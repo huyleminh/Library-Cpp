@@ -2,7 +2,7 @@
 //  modlib.h
 //  LibraryCpp
 //
-//  Created by Le Hoang Anh on 10/26/20.
+//  Created by Le Hoang Anh and Le Minh Huy on 10/26/20.
 //
 
 #ifndef _MOD_LIB_H_

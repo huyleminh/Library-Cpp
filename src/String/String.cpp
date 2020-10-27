@@ -1,81 +1,91 @@
 #include "String.h"
 
+using namespace modlib;
+
+
 namespace modlib {
 
-// Defaut constructor.
+
+// --------------------------------------------------------------------
+// |                                                                  |
+// |                          Initializes                             |
+// |                                                                  |
+// --------------------------------------------------------------------
+
+
 String::String() {}
 
-String::String(Element c, const int& repeatingCount) {
-    for (int i = 0; i < repeatingCount; i++)
-    this->_data += c;
+String::String(Element c, int repeatingCount) {
+    _data = string(repeatingCount, c);
 }
 
-String::String(const Element* s) {
-    this->_data = s;
+String::String(ConstCharacterArray s) {
+    _data = s;
 }
 
-String::String(const std::string &str) {
-    this->_data = str;
+String::String(ConstBaseReference str) {
+    _data = str;
 }
 
-// Copy constructor.
 String::String(ConstReference str) {
-    this->_data = str._data;
+    _data = str._data;
 }
 
-// Assignment operator
+// --------------------------------------------------------------------
+
+
+
+
+
+// --------------------------------------------------------------------
+// |                                                                  |
+// |           Assignment, Addition, Brackets operators.              |
+// |                                                                  |
+// --------------------------------------------------------------------
+
+
 String& String::operator=(Element c) {
-    this->_data = c;
+    _data = c;
     return *this;
 }
 
-String& String::operator=(const Element* s) {
-    this->_data = s;
+String& String::operator=(ConstCharacterArray s) {
+    _data = s;
     return *this;
 }
 
 String& String::operator=(ConstBaseReference str) {
-    this->_data = str;
+    _data = str;
     return *this;
 }
 
-// Member operator
 String String::operator+(Element c) const {
-    String result = "";
-    result._data += c;
-    return result;
+    return _data + c;
 }
 
-String String::operator+(const Element* s) const {
-    String result = "";
-    result._data += s;
-    return result;
+String String::operator+(ConstCharacterArray s) const {
+    return _data + s;
 }
 
 String String::operator+(ConstBaseReference str) const {
-    String result = "";
-    result._data += str;
-    return result;
+    return _data + str;
 }
 
 String String::operator+(ConstReference str) const {
-    String result = "";
-    result._data += str._data;
-    return result;
+    return _data + str._data;
 }
 
-
-String& String::operator+=(Element ch) {
-    this->_data += ch;
+String& String::operator+=(Element c) {
+    this->_data += c;
     return *this;
 }
 
-String& String::operator+=(const Element* s) {
+String& String::operator+=(ConstCharacterArray s) {
     this->_data += s;
     return *this;
 }
 
-String& String ::operator+=(ConstBaseReference str) {
+String& String::operator+=(ConstBaseReference str) {
     this->_data += str;
     return *this;
 }
@@ -85,31 +95,218 @@ String& String::operator+=(ConstReference str) {
     return *this;
 }
 
-String::Element& String::operator[](int pos) {
-    return this->_data[pos];
+String::Element& String::operator[](SizeType pos) {
+    return _data.at(pos);
 }
 
-const String::Element& String::operator[](int pos) const {
-    return this->_data[pos];
+const String::Element& String::operator[](SizeType pos) const {
+    return _data.at(pos);
 }
 
-String operator+ (String::Element left, const String& right) {
-    return String(left + right._data);
+// --------------------------------------------------------------------
+
+
+
+
+
+// --------------------------------------------------------------------
+// |                                                                  |
+// |                     Comparision operators                        |
+// |                                                                  |
+// --------------------------------------------------------------------
+
+
+// Equal to.
+// bool String::operator ==(Element c) const {
+//     if (_data.empty() && c == '\0')
+//         return true;
+//     if (_data.size() == 1 && _data[0] == c)
+//         return true;
+//     return false;
+// }
+
+bool String::operator ==(ConstCharacterArray s) const {
+    return _data == s;
 }
 
-String operator+ (const String::Element* left, const String& right) {
-    return String(left + right._data);
+bool String::operator ==(ConstBaseReference str) const {
+    return _data == str;
+}
+
+// Not equal to.
+// bool String::operator !=(Element c) const {
+//     return !(*this == c);
+// }
+
+bool String::operator !=(ConstCharacterArray s) const {
+    return _data != s;
+}
+
+bool String::operator !=(ConstBaseReference str) const {
+    return _data != str;
+}
+
+// Greater than.
+// bool String::operator >(Element c) const {}
+
+bool String::operator >(ConstCharacterArray s) const {
+    return _data > s;
+}
+
+bool String::operator >(ConstBaseReference str) const {
+    return _data > str;
+}
+
+
+// Less than.
+// bool String::operator <(Element c) const {}
+
+bool String::operator <(ConstCharacterArray s) const {
+    return _data < s;
+}
+
+bool String::operator <(ConstBaseReference str) const {
+    return _data < str;
+}
+
+
+// Greater than or equal to.
+// bool String::operator >=(Element c) const {}
+
+bool String::operator >=(ConstCharacterArray s) const {
+    return _data >= s;
+}
+
+bool String::operator >=(ConstBaseReference str) const {
+    return _data >= str;
+}
+
+
+// Less than or equal to.
+// bool String::operator <=(Element c) const {}
+
+bool String::operator <=(ConstCharacterArray s) const {
+    return _data <= s;
+}
+
+bool String::operator <=(ConstBaseReference str) const {
+    return _data <= str;
+}
+
+
+// --------------------------------------------------------------------
+
+
+
+
+
+// --------------------------------------------------------------------
+// |                                                                  |
+// |                     Non-member overloads                         |
+// |                                                                  |
+// --------------------------------------------------------------------
+
+
+// --------------------------------------------------------------------
+// Comparision operators.
+
+// Equal to.
+// bool operator ==(String::Element left, String::ConstReference right);
+bool operator ==(String::ConstCharacterArray left, String::ConstReference right) {
+    return right == left;
+}
+
+bool operator ==(String::ConstBaseReference left, String::ConstReference right) {
+    return right == left;
+}
+
+// Not equal to.
+// bool operator !=(String::Element left, String::ConstReference right) {}
+
+bool operator !=(String::ConstCharacterArray left, String::ConstReference right) {
+    return right != left;
+}
+
+bool operator !=(String::ConstBaseReference left, String::ConstReference right) {
+    return right != left;
+}
+
+// Greater than.
+// bool operator >(String::Element left, String::ConstReference right) {}
+
+bool operator >(String::ConstCharacterArray left, String::ConstReference right) {
+    return right > left;
+}
+
+bool operator >(String::ConstBaseReference left, String::ConstReference right) {
+    return right > left;
+}
+
+// Less than.
+// bool operator <(String::Element left, String::ConstReference right) {}
+
+bool operator <(String::ConstCharacterArray left, String::ConstReference right) {
+    return right < left;
+}
+
+bool operator <(String::ConstBaseReference left, String::ConstReference right) {
+    return right < left;
+}
+
+// Greater than or equal to.
+// bool operator >=(String::Element left, String::ConstReference right) {}
+
+bool operator >=(String::ConstCharacterArray left, String::ConstReference right) {
+    return right >= left;
+}
+
+bool operator >=(String::ConstBaseReference left, String::ConstReference right) {
+    return right >= left;
+}
+
+// Less than or equal to.
+// bool operator <=(String::Element left, String::ConstReference right) {}
+
+bool operator <=(String::ConstCharacterArray left, String::ConstReference right) {
+    return right <= left;
+}
+
+bool operator <=(String::ConstBaseReference left, String::ConstReference right) {
+    return right <= left;
+}
+
+// --------------------------------------------------------------------
+
+
+// --------------------------------------------------------------------
+// Addition operator.
+
+// Add a character, character array and string at the beginning of this string.
+String operator+ (String::Element left, String::ConstReference right) {
+    return left + right._data;
+}
+
+String operator+ (String::ConstCharacterArray left, String::ConstReference right) {
+    return left + right._data;
 }
 
 String operator+ (String::ConstBaseReference left, String::ConstReference right) {
-    return String(left + right._data);
+    return left + right._data;
 }
 
+// --------------------------------------------------------------------
+
+
+// --------------------------------------------------------------------
+// Input, output operators and methods.
+
+// Output a string to the output device.
 ostream& operator<< (ostream& outDev, String::ConstReference str) {
     outDev << str._data;
     return outDev;
 }
 
+// Input a string from the input device.
 istream& operator>> (istream& inDev, String& str) {
     inDev >> str._data;
     return inDev;
@@ -125,134 +322,6 @@ istream& getline(istream& inDev, String& str, String::Element delim) {
     return inDev;
 }
 
-//TODO new branch: 
-//Equal to: 
-bool String::operator ==(ConstBaseReference str) {
-    return this->_data == str;
-}
-
-bool String::operator ==(const Element* ch) {
-    return this->_data == ch;
-}
-
-bool String::operator ==(ConstReference str) {
-    return this->_data == str._data;
-}
-
-//Not equal
-bool modlib::String::operator !=(ConstBaseReference str) {
-    return this->_data != str;
-}
-
-bool modlib::String::operator !=(const Element* ch) {
-    return this->_data != ch;
-}
-
-bool modlib::String::operator !=(ConstReference str) {
-    return this->_data != str._data;
-}
-
-//Greater than
-bool modlib::String::operator >(ConstBaseReference str) {
-    return this->_data > str;
-}
-
-bool modlib::String::operator >(const Element* ch) {
-    return this->_data > ch;
-}
-
-bool modlib::String::operator >(ConstReference str) {
-    return this->_data > str._data;
-}
-
-//Less than
-bool modlib::String::operator <(ConstBaseReference str) {
-    return this->_data < str;
-}
-
-bool modlib::String::operator <(const Element* ch) {
-    return this->_data < ch;
-}
-
-bool modlib::String::operator <(ConstReference str) {
-    return this->_data < str._data;
-}
-
-//Greater than or equal to
-bool modlib::String::operator >=(ConstBaseReference str) {
-    return this->_data >= str;
-}
-
-bool modlib::String::operator >=(const Element* ch) {
-    return this->_data >= ch;
-}
-
-bool modlib::String::operator >=(ConstReference str) {
-    return this->_data >= str._data;
-}
-
-//Less than or equal to
-bool modlib::String::operator <=(ConstBaseReference str) {
-    return this->_data <= str;
-}
-
-bool modlib::String::operator <=(const Element* ch) {
-    return this->_data <= ch;
-}
-
-bool modlib::String::operator <=(ConstReference str) {
-    return this->_data <= str._data;
-}
-
-bool operator ==(String::ConstBaseReference left, String::ConstReference right) {
-    return left == right._data;
-}
-
-bool operator ==(const String::Element* ch, String::ConstReference str) {
-    return str._data == ch;
-}
-
-
-bool operator !=(String::ConstBaseReference left, String::ConstReference right) {
-    return left != right._data;
-}
-
-bool operator !=(const String::Element* ch, String::ConstReference str) {
-    return ch != str._data;
-}
-
-
-bool operator >(String::ConstBaseReference left, String::ConstReference right) {
-    return left > right._data;
-}
-
-bool operator >(const String::Element* ch, String::ConstReference str) {
-    return ch > str._data;
-}
-
-
-bool operator <(String::ConstBaseReference left, String::ConstReference right) {
-    return left < right._data;
-}
-
-bool operator <(const String::Element* ch, String::ConstReference str) {
-    return ch < str._data;
-}
-
-
-bool operator >=(String::ConstBaseReference left, String::ConstReference right) {
-    return left >= right._data;
-}
-
-bool operator >=(const String::Element* ch, String::ConstReference str) {
-    return ch >= str._data;
-}
-
-bool operator <=(String::ConstBaseReference left, String::ConstReference right) {
-    return left <= right._data;
-}
-
-bool operator <=(const String::Element* ch, String::ConstReference str) {
-    return ch <= str._data;
-}
+// --------------------------------------------------------------------
+// --------------------------------------------------------------------
 }
