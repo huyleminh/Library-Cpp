@@ -8,121 +8,201 @@ using namespace std;
 
 namespace modlib {
 	class String {
-	protected:
-		std::string _data;
+	private:
+		string _data;
 
 	public:
-        typedef const       std::string& ConstBaseReference;
-        typedef char        Element;
-        typedef size_t      SizeType;
-        typedef const modlib::String& ConstReference;
+        // --------------------------------------------------------------------
+        // |                                                                  |
+        // |                            Type alias                            |
+        // |                                                                  |
+        // --------------------------------------------------------------------
+
+
+        typedef const string&           ConstBaseReference;
+        typedef char                    Element;
+        typedef const char*             ConstCharacterArray;
+        typedef char*                   CharacterArray;
+        typedef size_t                  SizeType;
+        typedef const modlib::String&   ConstReference;
+
+        // --------------------------------------------------------------------
+        
+
+
+
+
+        // --------------------------------------------------------------------
+        // |                                                                  |
+        // |                          Initializes                             |
+        // |                                                                  |
+        // --------------------------------------------------------------------
+
 
         // Default constructor.
         String();
 
-        String(Element c, const int &repeatingCount = 1);
-        String(const Element* s);
+        // Initialize a string with `repeatingCount` consecutive copies of character `c`.
+        String(Element c, int repeatingCount = 1);
+
+        // Initialize a string with a pointer to the character array.
+        String(ConstCharacterArray s);
+
+        // Initialize a string with another string (string type).
         String(ConstBaseReference str);
 
         // Copy constructor.
         String(ConstReference str);
 
+        // --------------------------------------------------------------------
 
-		// Assignment operator
+
+
+
+
+        // --------------------------------------------------------------------
+        // |                                                                  |
+        // |           Assignment, Addition, Brackets operators.              |
+        // |                                                                  |
+        // --------------------------------------------------------------------
+
+
+        // Assignment operator.
         String& operator= (Element c);
-        String& operator= (const Element* s);
+        String& operator= (ConstCharacterArray s);
         String& operator= (ConstBaseReference str);
 
-
-		// Member operator
+        // Add a character, character array and string at the end of this string.
         String operator+ (Element c) const;
-        String operator+ (const Element* s) const; 
+        String operator+ (ConstCharacterArray s) const; 
 		String operator+ (ConstBaseReference str) const;
-		String operator+ (const String &str) const;
+		String operator+ (ConstReference str) const;
 
         String& operator+= (Element c);
-        String& operator+= (const Element* s);
+        String& operator+= (ConstCharacterArray s);
 		String& operator+= (ConstBaseReference str);
-		String& operator+= (const String &str);
+		String& operator+= (ConstReference str);
+
+        Element& operator[] (SizeType pos);
+		const Element& operator[] (SizeType pos) const;
+
+        // --------------------------------------------------------------------
+		
 
 
-		Element& operator[] (int pos);
-		const Element& operator[] (int pos) const;
 
-        // Add a `left` character at the beginning of `right` string.
-        friend String operator+ (Element left, String::ConstReference right);
 
-        // Add an `left` array character at the beginning of `right` string.
-        friend String operator+ (const Element* left, String::ConstReference right);
+        // --------------------------------------------------------------------
+        // |                                                                  |
+        // |                     Comparision operators                        |
+        // |                                                                  |
+        // --------------------------------------------------------------------
 
-        // Add a `left` string at the beginning of `right` string.
-        friend String operator+ (String::ConstBaseReference left, String::ConstReference right);
 
-        friend ostream& operator<< (ostream& outDev, String::ConstReference str);
-        friend istream& operator>> (istream& inDev, String& str);
-        friend istream& getline(istream& inDev, String& str);
-        friend istream& getline(istream& inDev, String& str, Element delim);
+        // Equal to.
+        // bool operator ==(Element c);
+        bool operator ==(ConstCharacterArray s) const;
+        bool operator ==(ConstBaseReference str) const;
 
+        // Not equal to.
+        // bool operator !=(Element c);
+        bool operator !=(ConstCharacterArray s) const;
+        bool operator !=(ConstBaseReference str) const;
+
+        // Greater than.
+        // bool operator >(Element c);
+        bool operator >(ConstCharacterArray s) const;
+        bool operator >(ConstBaseReference str) const;
+
+        // Less than.
+        // bool operator <(Element c);
+        bool operator <(ConstCharacterArray s) const;
+        bool operator <(ConstBaseReference str) const;
+
+        // Greater than or equal to.
+        // bool operator >=(Element c);
+        bool operator >=(ConstCharacterArray s) const;
+        bool operator >=(ConstBaseReference str) const;
+
+        // Less than or equal to.
+        // bool operator <=(Element c);
+        bool operator <=(ConstCharacterArray s) const;
+        bool operator <=(ConstBaseReference str) const;
+
+        // --------------------------------------------------------------------
+
+
+
+
+
+        // --------------------------------------------------------------------
+        // |                                                                  |
+        // |                     Non-member overloads                         |
+        // |                                                                  |
+        // --------------------------------------------------------------------
+
+
+        // --------------------------------------------------------------------
+        // Comparision operators.
 
         //TODO: On branch: relation operators: not finish 
-        //Equal to: 
-        bool operator ==(ConstBaseReference str);
-        friend bool operator ==(String::ConstBaseReference leftStr, const String &rightStr);
+        // Equal to.
+        // friend bool operator ==(String::Element left, String::ConstReference right);
+        friend bool operator ==(String::ConstCharacterArray left, String::ConstReference right);
+        friend bool operator ==(String::ConstBaseReference left, String::ConstReference right); 
+        
+        // Not equal to.
+        // friend bool operator !=(String::Element left, String::ConstReference right);
+        friend bool operator !=(String::ConstCharacterArray left, String::ConstReference right);
+        friend bool operator !=(String::ConstBaseReference left, String::ConstReference right);
 
-        bool operator ==(const Element* ch);
-        friend bool operator ==(const Element* ch, String::ConstReference str);
+        // Greater than.
+        // friend bool operator >(String::Element left, String::ConstReference right);
+        friend bool operator >(String::ConstCharacterArray left, String::ConstReference right);
+        friend bool operator >(String::ConstBaseReference left, String::ConstReference right);
 
-        bool operator ==(const String &str);
+        // Less than.
+        // friend bool operator <(String::Element left, String::ConstReference right);
+        friend bool operator <(String::ConstCharacterArray left, String::ConstReference right);
+        friend bool operator <(String::ConstBaseReference left, String::ConstReference right);
 
+        // Greater than or equal to.
+        // friend bool operator >=(String::Element left, String::ConstReference right);
+        friend bool operator >=(String::ConstCharacterArray left, String::ConstReference right);
+        friend bool operator >=(String::ConstBaseReference left, String::ConstReference right);
 
-        //Not equal
-        bool operator !=(ConstBaseReference str);
-        friend bool operator !=(String::ConstBaseReference leftStr, const String &rightStr);
+        // Less than or equal to.
+        // friend bool operator <=(String::Element left, String::ConstReference right);
+        friend bool operator <=(String::ConstCharacterArray left, String::ConstReference right);
+        friend bool operator <=(String::ConstBaseReference left, String::ConstReference right);
 
-        bool operator !=(const Element* ch);
-        friend bool operator !=(const Element* ch, String::ConstReference str);
-
-        bool operator !=(const String &str);
-
-
-        //Greater than 
-        bool operator >(ConstBaseReference str);
-        friend bool operator >(String::ConstBaseReference leftStr, const String &rightStr);
-
-        bool operator >(const Element* ch);
-        friend bool operator >(const Element* ch, String::ConstReference str);
-
-        bool operator >(const String &str);
-
-
-        //Less than 
-        bool operator <(ConstBaseReference str);
-        friend bool operator <(String::ConstBaseReference leftStr, const String &rightStr);
-
-        bool operator <(const Element* ch);
-        friend bool operator <(const Element* ch, String::ConstReference str);
-
-        bool operator <(const String &str);
+        // --------------------------------------------------------------------
 
 
-        //Greater than or equal to
-        bool operator >=(ConstBaseReference str);
-        friend bool operator >=(String::ConstBaseReference leftStr, const String &rightStr);
+        // --------------------------------------------------------------------
+        // Addition operator.
 
-        bool operator >=(const Element* ch);
-        friend bool operator >=(const Element* ch, String::ConstReference str);
+        // Add a character, character array and string at the beginning of this string.
+        friend String operator+ (String::Element left, String::ConstReference right);
+        friend String operator+ (String::ConstCharacterArray left, String::ConstReference right);
+        friend String operator+ (String::ConstBaseReference left, String::ConstReference right);
 
-        bool operator >=(const String &str);
+        // --------------------------------------------------------------------
 
 
-        //Less than or equal to 
-        bool operator <=(ConstBaseReference str);
-        friend bool operator <=(String::ConstBaseReference leftStr, const String &rightStr);
+        // --------------------------------------------------------------------
+        // Input, output operators and methods.
 
-        bool operator <=(const Element* ch);
-        friend bool operator <=(const Element* ch, String::ConstReference str);
+        // Output a string to the output device.
+        friend ostream& operator<< (ostream& outDev, String::ConstReference str);
 
-        bool operator <=(const String &str);
+        // Input a string from the input device.
+        friend istream& operator>> (istream& inDev, String& str);
+        friend istream& getline(istream& inDev, String& str);
+        friend istream& getline(istream& inDev, String& str, String::Element delim);
+
+        // --------------------------------------------------------------------
+        // --------------------------------------------------------------------
 	};
 }
 
