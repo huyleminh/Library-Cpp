@@ -29,9 +29,26 @@ namespace modlib {
         typedef UInt64                  SizeType;
         typedef modlib::String&         Reference;
         typedef const modlib::String&   ConstReference;
+        typedef string::iterator        Iterator;
+        typedef string::const_iterator  ConstIterator;
 
         // --------------------------------------------------------------------
         
+
+
+
+
+        // --------------------------------------------------------------------
+        // |                                                                  |
+        // |                         Define values                            |
+        // |                                                                  |
+        // --------------------------------------------------------------------
+
+
+        #define NO_POSITION             string::npos
+
+        // --------------------------------------------------------------------
+
 
 
 
@@ -74,11 +91,20 @@ namespace modlib {
         // Remove substring [start, end - 1].
         void removeSubrange(SizeType start, SizeType end);
 
+        // Remove substring [start, end - 1].
+        void removeSubrange(ConstIterator start, ConstIterator end);
+
         // Remove substring [0, end - 1].
         void removePrefix(SizeType end);
 
-        // Remove substring [start, ].
+        // Remove substring [0, end - 1].
+        void removePrefix(ConstIterator end);
+
+        // Remove substring [start, length - 1].
         void removeSuffix(SizeType start);
+
+        // Remove substring [start, length - 1].
+        void removeSuffix(ConstIterator start);
 
         // Remove the first element if the string is empty.
         void removeFirst();
