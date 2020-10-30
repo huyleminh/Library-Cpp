@@ -22,15 +22,15 @@ namespace modlib {
         // --------------------------------------------------------------------
 
 
-        typedef const string&           ConstBaseReference;
-        typedef char                    Element;
-        typedef const char*             ConstCharacterArray;
-        typedef char*                   CharacterArray;
-        typedef UInt64                  SizeType;
-        typedef modlib::String&         Reference;
-        typedef const modlib::String&   ConstReference;
-        typedef string::iterator        Iterator;
-        typedef string::const_iterator  ConstIterator;
+        typedef const string&               ConstBaseReference;
+        typedef char                        Element;
+        typedef const char*                 ConstCharacterArray;
+        typedef char*                       CharacterArray;
+        typedef UInt64                      SizeType;
+        typedef modlib::String&             Reference;
+        typedef const modlib::String&       ConstReference;
+        typedef string::iterator            Iterator;
+        typedef string::const_iterator      ConstIterator;
 
         // --------------------------------------------------------------------
         
@@ -45,7 +45,7 @@ namespace modlib {
         // --------------------------------------------------------------------
 
 
-        #define NO_POSITION             string::npos
+        static const SizeType NoPosition;
 
         // --------------------------------------------------------------------
 

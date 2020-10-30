@@ -8,6 +8,21 @@ namespace modlib {
 
 // --------------------------------------------------------------------
 // |                                                                  |
+// |                         Define values                            |
+// |                                                                  |
+// --------------------------------------------------------------------
+
+
+const String::SizeType NoPosition = string::npos;
+
+// --------------------------------------------------------------------
+
+
+
+
+
+// --------------------------------------------------------------------
+// |                                                                  |
 // |                          Initializes                             |
 // |                                                                  |
 // --------------------------------------------------------------------
@@ -87,7 +102,7 @@ void String::removePrefix(ConstIterator end) {
 }
         
 void String::removeSuffix(SizeType start) {
-    removeSubrange(start, _data.length() - 1);
+    removeSubrange(start, _data.length());
 }
         
 void String::removeSuffix(ConstIterator start) {
@@ -95,20 +110,34 @@ void String::removeSuffix(ConstIterator start) {
 }
 
 void String::removeFirst() {
-    // check empty
-    // remove(0);
+    // if (_data.empty())
+        // removeAt(0);
 }
 
 void String::removeLast() {
-    // check empty
-    // remove(_data.length() - 1);
+    // if (_data.empty())
+        // removeAt(_data.length() - 1);
 }
 
-// String String::trim() const {
+String String::trim() const {
+    string res = _data;
 
-// }
+    const size_t endLeft = res.find_first_not_of(' ');
+    if (endLeft != string::npos)
+        res.erase(0, endLeft); // remove all whitespaces at the beginning of the string.
+
+    const size_t startRight = res.find_last_not_of(' ');
+    if (startRight != string::npos && startRight != res.length() - 1)
+        res.erase(startRight + 1); // remove all whitespaces at the end of the string.
+
+    return String(res);
+}
         
 // --------------------------------------------------------------------
+
+
+
+
 
 // --------------------------------------------------------------------
 // |                                                                  |
