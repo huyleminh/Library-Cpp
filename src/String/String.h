@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <string>
+#include "/Users/lehoanganh/Desktop/HoangAnh/Library-Cpp/src/TypeAlias.h"
 
 using namespace std;
 
@@ -10,6 +11,8 @@ namespace modlib {
 	class String {
 	private:
 		string _data;
+
+        // handle input, input negative.
 
 	public:
         // --------------------------------------------------------------------
@@ -23,7 +26,7 @@ namespace modlib {
         typedef char                    Element;
         typedef const char*             ConstCharacterArray;
         typedef char*                   CharacterArray;
-        typedef size_t                  SizeType;
+        typedef UInt64                  SizeType;
         typedef modlib::String&         Reference;
         typedef const modlib::String&   ConstReference;
 
@@ -55,6 +58,37 @@ namespace modlib {
         // Copy constructor.
         String(ConstReference str);
 
+        // --------------------------------------------------------------------
+
+
+
+
+
+        // --------------------------------------------------------------------
+        // |                                                                  |
+        // |                            Remove                                |
+        // |                                                                  |
+        // --------------------------------------------------------------------
+
+
+        // Remove substring [start, end - 1].
+        void removeSubrange(SizeType start, SizeType end);
+
+        // Remove substring [0, end - 1].
+        void removePrefix(SizeType end);
+
+        // Remove substring [start, ].
+        void removeSuffix(SizeType start);
+
+        // Remove the first element if the string is empty.
+        void removeFirst();
+
+        // Remove the last element if the string is empty.
+        void removeLast();
+
+        // Remove all whitespaces at the beginning and the end of the string.
+        String trim() const;
+        
         // --------------------------------------------------------------------
 
 
