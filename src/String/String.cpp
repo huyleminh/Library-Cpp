@@ -39,6 +39,79 @@ String::String(ConstReference str) {
 
 // --------------------------------------------------------------------
 // |                                                                  |
+// |                             Capacity                             |
+// |                                                                  |
+// --------------------------------------------------------------------
+
+
+bool String::isEmpty() const {
+    return _data.empty();
+}
+
+String::SizeType String::length() const {
+    return _data.length();
+}
+
+// --------------------------------------------------------------------
+
+
+
+
+
+// --------------------------------------------------------------------
+// |                                                                  |
+// |                            Remove                                |
+// |                                                                  |
+// --------------------------------------------------------------------
+
+
+void String::removeSubrange(SizeType start, SizeType end) {
+    Iterator last = _data.end();
+
+    if (end <= _data.length())
+        last = _data.begin() + end;
+
+    removeSubrange(_data.begin() + start, last);
+}
+
+void String::removeSubrange(ConstIterator start, ConstIterator end) {
+    _data.erase(start, end);
+}
+
+void String::removePrefix(SizeType end) {
+    removeSubrange(0, end);
+}
+        
+void String::removePrefix(ConstIterator end) {
+    removeSubrange(_data.begin(), end);
+}
+        
+void String::removeSuffix(SizeType start) {
+    removeSubrange(start, _data.length() - 1);
+}
+        
+void String::removeSuffix(ConstIterator start) {
+    removeSubrange(start, _data.end());
+}
+
+void String::removeFirst() {
+    // check empty
+    // remove(0);
+}
+
+void String::removeLast() {
+    // check empty
+    // remove(_data.length() - 1);
+}
+
+// String String::trim() const {
+
+// }
+        
+// --------------------------------------------------------------------
+
+// --------------------------------------------------------------------
+// |                                                                  |
 // |           Assignment, Addition, Brackets operators.              |
 // |                                                                  |
 // --------------------------------------------------------------------
