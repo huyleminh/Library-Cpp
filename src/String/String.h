@@ -22,15 +22,19 @@ namespace modlib {
         // --------------------------------------------------------------------
 
 
-        typedef const string&               ConstBaseReference;
-        typedef char                        Element;
-        typedef const char*                 ConstCharacterArray;
-        typedef char*                       CharacterArray;
-        typedef UInt64                      SizeType;
-        typedef modlib::String&             Reference;
-        typedef const modlib::String&       ConstReference;
-        typedef string::iterator            Iterator;
-        typedef string::const_iterator      ConstIterator;
+        typedef UInt64                              SizeType;
+
+        typedef char                                Element;
+        typedef char*                               CharacterArray;
+        typedef const char*                         ConstCharacterArray;
+        typedef const string&                       ConstBaseReference;        
+        typedef modlib::String&                     Reference;
+        typedef const modlib::String&               ConstReference;
+
+        typedef string::iterator                    Iterator;
+        typedef string::const_iterator              ConstIterator;
+        typedef string::reverse_iterator            ReverseIterator;
+        typedef string::const_reverse_iterator      ConstReverseIterator;
 
         // --------------------------------------------------------------------
         
@@ -87,6 +91,7 @@ namespace modlib {
         // |                                                                  |
         // --------------------------------------------------------------------
 
+
         // Check if the string is empty or not.
         bool isEmpty() const;
 
@@ -99,6 +104,48 @@ namespace modlib {
         
         
         
+        // --------------------------------------------------------------------
+        // |                                                                  |
+        // |                            Iterators                             |
+        // |                                                                  |
+        // --------------------------------------------------------------------
+
+        // Returns Iterator to beginning.
+        Iterator begin();
+
+        // Returns Iterator to end.
+        Iterator end();
+
+        // Returns ConstIterator to beginning.
+        ConstIterator begin() const;
+
+        // Returns ConstIterator to end.
+        ConstIterator end() const;
+
+        // Returns ReverseIterator to reverse beginning.
+        ReverseIterator reverseBegin();
+        
+        // Returns ReverseIterator to reverse end.
+        ReverseIterator reverseEnd();
+
+        // Returns ConstIterator to beginning.
+        ConstIterator constBegin() const;
+        
+        // Returns ConstIterator to end.
+        ConstIterator constEnd() const;
+
+        // Returns ConstReverseIterator to reverse beginning.
+        ConstReverseIterator constReverseBegin() const;
+        
+        // Returns ConstReverseIterator to reverse end.
+        ConstReverseIterator constReverseEnd() const;
+
+        // --------------------------------------------------------------------
+
+
+
+
+
         // --------------------------------------------------------------------
         // |                                                                  |
         // |                            Remove                                |
@@ -124,10 +171,10 @@ namespace modlib {
         // Remove substring [start, length - 1].
         void removeSuffix(ConstIterator start);
 
-        // Remove the first element if the string is empty.
+        // Remove the first element if the string is not empty.
         void removeFirst();
 
-        // Remove the last element if the string is empty.
+        // Remove the last element if the string is not empty.
         void removeLast();
 
         // Remove all whitespaces at the beginning and the end of the string.
