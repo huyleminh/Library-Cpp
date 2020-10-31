@@ -6,6 +6,12 @@ using namespace modlib;
 namespace modlib {
 
 
+void String::changeCase(Element (*change)(Element c)) {
+    for (Element &c : _data)
+        c = change(c);
+}
+
+
 // --------------------------------------------------------------------
 // |                                                                  |
 // |                         Define values                            |
@@ -132,6 +138,33 @@ String::ConstReverseIterator String::constReverseEnd() const {
 
 
         
+
+// --------------------------------------------------------------------
+// |                                                                  |
+// |                            Change                                |
+// |                                                                  |
+// --------------------------------------------------------------------
+
+
+String String::uppercase() const {
+    String upper = _data;
+    upper.changeCase(String::toUpperCharacter);
+    
+    return upper;
+}
+
+String String::lowercase() const {
+    String upper = _data;
+    upper.changeCase(String::toLowerCharacter);
+
+    return upper;
+}
+
+// --------------------------------------------------------------------
+
+
+
+
 
 // --------------------------------------------------------------------
 // |                                                                  |
@@ -485,5 +518,17 @@ istream& getline(istream& inDev, String::Reference str, String::Element delim) {
 }
 
 // --------------------------------------------------------------------
-// --------------------------------------------------------------------
+
+
+
+char String::toUpperCharacter(char c) {
+    if ('a' <= c && c <= 'z')
+        return c - 'a' + 'A';
+}
+
+char String::toLowerCharacter(char c) {
+    if ('A' <= c && c <= 'Z')
+        return c - 'A' + 'a';
+}
+
 }

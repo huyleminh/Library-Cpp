@@ -154,6 +154,25 @@ namespace modlib {
 
         // --------------------------------------------------------------------
         // |                                                                  |
+        // |                            Change                                |
+        // |                                                                  |
+        // --------------------------------------------------------------------
+
+
+        // Returns a uppercase version of the string.
+        String uppercase() const;
+
+        // Returns a lowercase version of the string.
+        String lowercase() const;
+
+        // --------------------------------------------------------------------
+
+
+
+
+
+        // --------------------------------------------------------------------
+        // |                                                                  |
         // |                            Remove                                |
         // |                                                                  |
         // --------------------------------------------------------------------
@@ -334,7 +353,14 @@ namespace modlib {
         friend istream& getline(istream& inDev, String::Reference str, String::Element delim);
 
         // --------------------------------------------------------------------
-        // --------------------------------------------------------------------
+
+
+
+        static char toUpperCharacter(char);
+        static char toLowerCharacter(char);
+
+        private:
+        void changeCase(Element (*change)(Element));
 	};
 }
 
