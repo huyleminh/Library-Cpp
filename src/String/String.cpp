@@ -75,6 +75,58 @@ String::SizeType String::length() const {
 
 // --------------------------------------------------------------------
 // |                                                                  |
+// |                            Iterators                             |
+// |                                                                  |
+// --------------------------------------------------------------------
+
+String::Iterator String::begin() {
+    return _data.begin();
+}
+
+String::Iterator String::end() {
+    return _data.end();
+}
+
+String::ConstIterator String::begin() const {
+    return _data.begin();
+}
+
+String::ConstIterator String::end() const {
+    return _data.end();
+}
+
+String::ReverseIterator String::reverseBegin() {
+    return _data.rbegin();
+}
+        
+String::ReverseIterator String::reverseEnd() {
+    return _data.rend();
+}
+
+String::ConstIterator String::constBegin() const {
+    return _data.cbegin();
+}
+        
+String::ConstIterator String::constEnd() const {
+    return _data.cend();
+}
+
+String::ConstReverseIterator String::constReverseBegin() const {
+    return _data.crbegin();
+}
+        
+String::ConstReverseIterator String::constReverseEnd() const {
+    return _data.crend();
+}
+
+// --------------------------------------------------------------------
+
+
+
+        
+
+// --------------------------------------------------------------------
+// |                                                                  |
 // |                            Remove                                |
 // |                                                                  |
 // --------------------------------------------------------------------
