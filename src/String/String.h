@@ -128,6 +128,12 @@ namespace modlib {
         // Returns ReverseIterator to reverse end.
         ReverseIterator reverseEnd();
 
+        // Returns ConstReverseIterator to reverse beginning.
+        ConstReverseIterator reverseBegin() const;
+        
+        // Returns ConstReverseIterator to reverse end.
+        ConstReverseIterator reverseEnd() const;
+
         // Returns ConstIterator to beginning.
         ConstIterator constBegin() const;
         
