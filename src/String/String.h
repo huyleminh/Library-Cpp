@@ -3,7 +3,7 @@
 
 #include <iostream>
 #include <string>
-#include "/Users/lehoanganh/Desktop/HoangAnh/Library-Cpp/src/TypeAlias.h"
+#include "../TypeAlias.h"
 
 using namespace std;
 
@@ -238,14 +238,125 @@ namespace modlib {
 		const Element& operator[] (SizeType pos) const;
 
         // --------------------------------------------------------------------
-		
 
 
 
 
         // --------------------------------------------------------------------
         // |                                                                  |
-        // |                     Comparison operators                        |
+        // |                        Addition methods                          |
+        // |                                                                  |
+        // --------------------------------------------------------------------
+
+
+
+        //Append a copy of a std::string
+        String& append(ConstBaseReference str);
+
+        //Append a copy of a modlib::String
+        String& append(ConstReference str);
+
+        //Append a copy of a sub string in std::string
+        String& append(ConstBaseReference str, SizeType beginPos, SizeType len);
+
+        //Append a copy of a sub string in modlic::String
+        String& append(ConstReference str, SizeType beginPos, SizeType len);
+
+        //Append a copy of the characters sequence
+        String& append(ConstCharacterArray seq);
+
+        //Append a copy of n characters in the array of characters points by seq
+        String& append(ConstCharacterArray seq, SizeType n);
+
+        //Append n consecutive copies of character c
+        String& append(SizeType n, Element c);
+
+        //Append a copy of a sequence in range [begin, end)
+        template<class InIterator>
+            String& append(InIterator begin, InIterator end) {
+            this->_data.append(begin, end);
+            return *this;
+        }
+
+        //! Need to review
+        //Appends a copy of each of the characters in il, in the same order
+        String& append (initializer_list<char> il);
+
+        // --------------------------------------------------------------------
+
+
+
+
+        // --------------------------------------------------------------------
+        // |                                                                  |
+        // |                         Insert methods                           |
+        // |                                                                  |
+        // --------------------------------------------------------------------
+
+
+
+        //Insert additional characters right before the input position pos
+
+        //Insert a copy of std::string
+        String& insert(SizeType pos, ConstBaseReference str);
+
+        //Insert a copy of  modlib::String 
+        String& insert(SizeType pos, ConstReference str);
+
+        //Insert a copy of sub string of std::string
+        String& insert(SizeType pos, ConstBaseReference str, SizeType begin, SizeType len);
+
+        //Insert a copy of sub string of modlib::String
+        String& insert(SizeType pos, ConstReference str, SizeType begin, SizeType len);
+
+        //Insert a copy of the characters sequence
+        String& insert(SizeType pos, ConstCharacterArray s);
+
+        //Insert a copy of n characters in the array of characters points by seq
+        String& insert(SizeType pos, ConstCharacterArray seq, SizeType n);
+
+        //Insert n consecutive copies of character ch
+        String& insert(SizeType pos, SizeType n, Element ch);
+
+        //Insert n consecutive copies of character ch and return the iterator at the first character inserted
+        Iterator insert(ConstIterator it, SizeType n, Element ch);
+
+        //Insert a single character at the input iterator
+        Iterator insert(ConstIterator it, Element ch);
+
+        //Insert a copy of a sequence in range [begin, end) at the input iterator
+        template<class InIterator>
+        Iterator insert (Iterator p, InIterator first, InIterator last) {
+            Iterator _it = this->_data.insert(p, first, last);
+            return _it;
+        }
+
+        //! Need to review
+        //Inser a copy of each of the characters in il, in the same order
+        String& insert (ConstIterator p, initializer_list<char> il);
+
+
+        // --------------------------------------------------------------------
+
+
+
+        // --------------------------------------------------------------------
+        // |                                                                  |
+        // |                        Push method                               |
+        // |                                                                  |
+        // --------------------------------------------------------------------
+
+        void push(Element ch);
+
+        // --------------------------------------------------------------------
+
+
+
+
+
+        // --------------------------------------------------------------------
+        // |                                                                  |
+        // |                     Comparison operators                         |
         // |                                                                  |
         // --------------------------------------------------------------------
 
