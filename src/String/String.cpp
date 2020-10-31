@@ -103,6 +103,14 @@ String::ReverseIterator String::reverseEnd() {
     return _data.rend();
 }
 
+String::ConstReverseIterator String::reverseBegin() const {
+    return _data.rbegin();
+}
+    
+String::ConstReverseIterator String::reverseEnd() const {
+    return _data.rend();
+}
+
 String::ConstIterator String::constBegin() const {
     return _data.cbegin();
 }
