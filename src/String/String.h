@@ -177,16 +177,16 @@ namespace modlib {
         // |                                                                  |
         // --------------------------------------------------------------------
 
-        //Remove all string
+        // Remove all string
         void removeAll();
 
-        //Remove a character
+        // Remove a character
         void remove(const Element& ch);
 
-        //Remove a character at index
+        // Remove a character at index
         void removeAt(SizeType pos);
 
-        //Remove a character at iterator
+        // Remove a character at iterator
         void removeAt(ConstIterator iter);
 
         // Remove substring [start, end - 1].
@@ -214,7 +214,7 @@ namespace modlib {
         void removeLast();
 
         // Remove all whitespaces at the beginning and the end of the string.
-        String trim() const;
+        String trim(bool left = true, bool right = true) const;
         
         // --------------------------------------------------------------------
 
@@ -270,7 +270,7 @@ namespace modlib {
         //Append a copy of a sub string in std::string
         String& append(ConstBaseReference str, SizeType beginPos, SizeType len);
 
-        //Append a copy of a sub string in modlic::String
+        //Append a copy of a sub string in modlib::String
         String& append(ConstReference str, SizeType beginPos, SizeType len);
 
         //Append a copy of the characters sequence
@@ -343,8 +343,8 @@ namespace modlib {
         }
 
         //! Need to review
-        //Inser a copy of each of the characters in il, in the same order
-        String& insert (ConstIterator p, initializer_list<char> il);
+        // Insert a copy of each of the characters in il, in the same order
+        String& insert(ConstIterator p, initializer_list<char> il);
 
 
         // --------------------------------------------------------------------

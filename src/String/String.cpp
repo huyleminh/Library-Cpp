@@ -233,16 +233,20 @@ namespace modlib {
             // removeAt(_data.length() - 1);
     }
 
-    String String::trim() const {
+    String String::trim(bool left, bool right) const {
         string res = _data;
 
-        const size_t endLeft = res.find_first_not_of(' ');
-        if (endLeft != string::npos)
-            res.erase(0, endLeft); // remove all whitespaces at the beginning of the string.
+        if (left) {
+            const size_t endLeft = res.find_first_not_of(' ');
+            if (endLeft != string::npos)
+                res.erase(0, endLeft); // remove all whitespaces at the beginning of the string.
+        }
 
-        const size_t startRight = res.find_last_not_of(' ');
-        if (startRight != string::npos && startRight != res.length() - 1)
-            res.erase(startRight + 1); // remove all whitespaces at the end of the string.
+        if (right) {
+            const size_t startRight = res.find_last_not_of(' ');
+            if (startRight != string::npos && startRight != res.length() - 1)
+                res.erase(startRight + 1); // remove all whitespaces at the end of the string.
+        }
 
         return String(res);
     }
