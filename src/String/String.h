@@ -177,6 +177,17 @@ namespace modlib {
         // |                                                                  |
         // --------------------------------------------------------------------
 
+        //Remove all string
+        void removeAll();
+
+        //Remove a character
+        void remove(const Element& ch);
+
+        //Remove a character at index
+        void removeAt(SizeType pos);
+
+        //Remove a character at iterator
+        void removeAt(ConstIterator iter);
 
         // Remove substring [start, end - 1].
         void removeSubrange(SizeType start, SizeType end);

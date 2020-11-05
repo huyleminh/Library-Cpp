@@ -172,6 +172,27 @@ namespace modlib {
     // |                                                                  |
     // --------------------------------------------------------------------
 
+    void String::removeAll() {
+        this->_data.erase(this->_data.begin(), this->end());
+    }
+
+    //Remove a character
+    void String::remove(const String::Element& ch) {
+        SizeType pos = this->_data.rfind(ch);
+            this->removeAt(pos);
+    }
+
+    //Remove a character at index
+    void String::removeAt(String::SizeType pos) {
+        if (pos < 0 || pos >= this->_data.length())
+            return;
+        this->_data.erase(pos, pos + 1);
+    }
+
+    //Remove a character at iterator
+    void String::removeAt(String::ConstIterator iter) {
+        this->removeSubrange(iter, iter + 1);
+    }
 
     void String::removeSubrange(SizeType start, SizeType end) {
         Iterator last = _data.end();
